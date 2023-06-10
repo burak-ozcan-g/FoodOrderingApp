@@ -10,8 +10,8 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         line_items: req.body.lineItems,
         mode: 'payment',
-        success_url: `http://localhost:3000/success`,
-        cancel_url: `http://localhost:3000`,
+        success_url: `https://food-ordering-app-ashen.vercel.app/success`,
+        cancel_url: `https://food-ordering-app-ashen.vercel.app`,
       });
       res.redirect(303, session.url);
     } catch (err) {
