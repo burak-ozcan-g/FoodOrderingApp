@@ -1,12 +1,17 @@
 import styles from "../styles/Cart.module.css"
 import Image from "next/image"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import axios from "axios";
 import { useRouter } from "next/router";
 import { reset } from "@/redux/cartSlice";
 import OrderDetail from "@/components/OrderDetail";
 
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 
 const cart = () => {
   const cart = useSelector(state => state.cart);
@@ -14,6 +19,27 @@ const cart = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const handleOnline = async () => {
+    const lineItems = cart.products.map((item) => {
+      return {
+        price_data: {
+          currency: 'try',
+          product_data: {
+            name: item.title,
+          },
+          unit_amount: item.price * 100
+        },
+        quantity: item.quantity,
+      }
+    })
+    const {data} = await axios.post('http://localhost:3000/api/checkout', {lineItems})
+
+    const stripe = await stripePromise
+
+    await stripe.redirectToCheckout({sessionId: data.id})
+  }
+
 
   const createOrder = async (data) => {
     try {
@@ -89,7 +115,7 @@ const cart = () => {
           {open ? (
             <div className={styles.paymentMethods}>
               <button className={styles.payButton} onClick={() => setCash(true)}>NAKİT ÖDEME!</button>
-              <button className={styles.payButton} onClick={() => setCash(true)}>ONLINE ÖDEME!</button>
+              <button className={styles.payButton} onClick={handleOnline}>ONLINE ÖDEME!</button>
             </div>
           ) : (
             <button onClick={() => setOpen(true)} className={styles.button}>Sepeti Onayla!</button>
@@ -102,3 +128,4 @@ const cart = () => {
 }
 
 export default cart
+
