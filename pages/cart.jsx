@@ -13,7 +13,7 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-const cart = () => {
+const Cart = () => {
   const cart = useSelector(state => state.cart);
   const [cash, setCash] = useState(false);
   const [open, setOpen] = useState(false);
@@ -127,5 +127,5 @@ const cart = () => {
   )
 }
 
-export default cart
+export default Cart
 
