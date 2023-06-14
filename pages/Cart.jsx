@@ -6,14 +6,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { reset } from "@/redux/cartSlice";
 import OrderDetail from "@/components/OrderDetail";
-
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
 
 const Cart = () => {
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
   const cart = useSelector(state => state.cart);
   const [cash, setCash] = useState(false);
   const [open, setOpen] = useState(false);
