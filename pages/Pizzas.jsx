@@ -22,7 +22,7 @@ export const getServerSideProps = async (ctx) => {
     admin = true;
   }
 
-  const res = await axios.get("https://food-ordering-app-fawn.vercel.app//api/products")
+  const res = await axios.get("https://food-ordering-app-fawn.vercel.app/api/products")
   return {
     props: {
       productList: res.data,

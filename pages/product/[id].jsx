@@ -95,7 +95,7 @@ const Product = ({ product }) => {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`https://food-ordering-app-fawn.vercel.app//api/products/${params.id}`)
+  const res = await axios.get(`https://food-ordering-app-fawn.vercel.app/api/products/${params.id}`)
   return {
     props: {
       product: res.data,

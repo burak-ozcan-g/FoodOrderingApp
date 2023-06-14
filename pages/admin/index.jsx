@@ -11,7 +11,7 @@ const Index = ({ products, orders }) => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete("https://food-ordering-app-fawn.vercel.app//api/products/" + id)
+      const res = await axios.delete("https://food-ordering-app-fawn.vercel.app/api/products/" + id)
       setProductList(productList.filter((p) => p._id !== id))
     } catch (error) {
       console.log(error)
@@ -23,7 +23,7 @@ const Index = ({ products, orders }) => {
     const currentStatus = item.status
 
     try {
-      const res = await axios.put("https://food-ordering-app-fawn.vercel.app//api/orders/" + id, { status: currentStatus + 1 })
+      const res = await axios.put("https://food-ordering-app-fawn.vercel.app/api/orders/" + id, { status: currentStatus + 1 })
       setOrderList([
         res.data,
         ...orderList.filter((o) => o._id !== id)
@@ -120,8 +120,8 @@ export const getServerSideProps = async (ctx) => {
     }
   }
 
-  const proRes = await axios.get("https://food-ordering-app-fawn.vercel.app//api/products")
-  const orRes = await axios.get("https://food-ordering-app-fawn.vercel.app//api/orders")
+  const proRes = await axios.get("https://food-ordering-app-fawn.vercel.app/api/products")
+  const orRes = await axios.get("https://food-ordering-app-fawn.vercel.app/api/orders")
 
   return {
     props: {
