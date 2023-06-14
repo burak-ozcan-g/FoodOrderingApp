@@ -36,7 +36,7 @@ const Add = ({ setClose }) => {
         title, desc, prices, extraOptions, img: url,
       }
 
-      await axios.post("https://food-ordering-app-fawn.vercel.app/api/products",  newProduct);
+      await axios.post("https://food-ordering-app-fawn.vercel.app//api/products",  newProduct);
       setClose(true)
 
     } catch (error) {
