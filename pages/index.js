@@ -18,6 +18,7 @@ export default function Home({ productList, admin }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
+      Deneme
       {/* {admin && <AddButon setClose={setClose} />}
       <ProductList productList={productList} />
       {!close && <Add setClose={setClose} />} */}
