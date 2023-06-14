@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-const MONGO_URL = process.env.MONGO_URL
+const MONGODB_URL = process.env.MONGODB_URL
 
-if (!MONGO_URL) {
-    throw new Error('Invalid/Missing environment variable: "MONGO_URL"');
+if (!MONGODB_URL) {
+    throw new Error('Invalid/Missing environment variable: "MONGODB_URL"');
 }
 
 let cached = global.mongoose
@@ -22,7 +22,7 @@ async function dbConnect() {
             bufferCommands: false,
         }
 
-        cached.promise = mongoose.connect(MONGO_URL, opts).then((mongoose) => {
+        cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
             return mongoose
         })
     }
