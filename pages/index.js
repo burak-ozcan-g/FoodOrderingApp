@@ -19,7 +19,7 @@ export default function Home({ productList, admin }) {
       </Head>
       <Featured />
       {admin && <AddButon setClose={setClose} />}
-      <ProductList productList={productList} />
+      {/* <ProductList productList={productList} /> */}
       {!close && <Add setClose={setClose} />}
     </>
   )
@@ -34,12 +34,12 @@ export const getServerSideProps = async (ctx) => {
     admin = true;
   }
 
-  const res = await axios.get("https://food-ordering-app-fawn.vercel.app/api/products")
-  return {
-    props: {
-      productList: res.data,
-      admin,
-    },
-  }
+  // const res = await axios.get("https://food-ordering-app-fawn.vercel.app/api/products")
+  // return {
+  //   props: {
+  //     productList: res.data,
+  //     admin,
+  //   },
+  // }
 
 }

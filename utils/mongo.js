@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const MONGO_URL = process.env.MONGO_URL
 
 if (!MONGO_URL) {
-    throw new Error('Invalid/Missing environment variable: "MONGODB_URL"');
+    throw new Error('Invalid/Missing environment variable: "MONGO_URL"');
 }
 
 let cached = global.mongoose
