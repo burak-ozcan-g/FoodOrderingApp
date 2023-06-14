@@ -10,6 +10,7 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         line_items: req.body.lineItems,
         mode: 'payment',
+        payment_method_types: ["card"],
         success_url: `https://food-ordering-app-fawn.vercel.app/success`,
         cancel_url: `https://food-ordering-app-fawn.vercel.app/`,
       });

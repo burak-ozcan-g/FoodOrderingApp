@@ -21,7 +21,7 @@ export const getServerSideProps = async (ctx) => {
   if (myCookie.token === process.env.TOKEN) {
     admin = true;
   }
-
+  const orderRes = await axios.get("https://food-ordering-app-fawn.vercel.app/api/orders")
   const res = await axios.get("https://food-ordering-app-fawn.vercel.app/api/products")
   return {
     props: {
